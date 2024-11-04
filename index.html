@@ -1,37 +1,120 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Site simples com html e css</title>
+    <title>Coleção de Produtos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .product-card {
+            margin: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+        }
+        .product-image {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <nav>
-
-        <div class="logo">
-            <a href="index.html"> Matheus </a>
+    <div class="container">
+        <h1 class="text-center my-4">Coleção de Produtos</h1>
+        <div class="row">
+            <!-- Início da grade de produtos -->
+            <div class="col-md-3">
+                <div class="product-card">
+                    <img src="imagem1.jpg" alt="Produto 1" class="product-image">
+                    <h5>Produto 1</h5>
+                    <a href="detalhes.html" class="btn btn-primary">Ver Detalhes</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-card">
+                    <img src="imagem2.jpg" alt="Produto 2" class="product-image">
+                    <h5>Produto 2</h5>
+                    <a href="detalhes.html" class="btn btn-primary">Ver Detalhes</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-card">
+                    <img src="imagem3.jpg" alt="Produto 3" class="product-image">
+                    <h5>Produto 3</h5>
+                    <a href="detalhes.html" class="btn btn-primary">Ver Detalhes</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-card">
+                    <img src="imagem4.jpg" alt="Produto 4" class="product-image">
+                    <h5>Produto 4</h5>
+                    <a href="detalhes.html" class="btn btn-primary">Ver Detalhes</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-card">
+                    <img src="imagem5.jpg" alt="Produto 5" class="product-image">
+                    <h5>Produto 5</h5>
+                    <a href="detalhes.html" class="btn btn-primary">Ver Detalhes</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-card">
+                    <img src="imagem6.jpg" alt="Produto 6" class="product-image">
+                    <h5>Produto 6</h5>
+                    <a href="detalhes.html" class="btn btn-primary">Ver Detalhes</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-card">
+                    <img src="imagem7.jpg" alt="Produto 7" class="product-image">
+                    <h5>Produto 7</h5>
+                    <a href="detalhes.html" class="btn btn-primary">Ver Detalhes</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-card">
+                    <img src="imagem8.jpg" alt="Produto 8" class="product-image">
+                    <h5>Produto 8</h5>
+                    <a href="detalhes.html" class="btn btn-primary">Ver Detalhes</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-card">
+                    <img src="imagem9.jpg" alt="Produto 9" class="product-image">
+                    <h5>Produto 9</h5>
+                    <a href="detalhes.html" class="btn btn-primary">Ver Detalhes</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-card">
+                    <img src="imagem10.jpg" alt="Produto 10" class="product-image">
+                    <h5>Produto 10</h5>
+                    <a href="detalhes.html" class="btn btn-primary">Ver Detalhes</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-card">
+                    <img src="imagem11.jpg" alt="Produto 11" class="product-image">
+                    <h5>Produto 11</h5>
+                    <a href="detalhes.html" class="btn btn-primary">Ver Detalhes</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-card">
+                    <img src="imagem12.jpg" alt="Produto 12" class="product-image">
+                    <h5>Produto 12</h5>
+                    <a href="detalhes.html" class="btn btn-primary">Ver Detalhes</a>
+                </div>
+            </div>
+            <!-- Fim da grade de produtos -->
         </div>
+    </div>
 
-        <ul>
-            <li> <a href="#"> Home </a> </li>
-            <li> <a href="#"> Sobre </a> </li>
-            <li> <a href="#"> Preços </a> </li>
-            <li> <a href="#"> Serviços </a> </li>
-            <li> <a href="#"> Contacto </a> </li>
-        </ul>
-
-    </nav>
-    <section class="banner">
-        <div class="texto">
-           <h1 class="titulo">Criar um site incrível somente</h1>
-           <h2 class="sub_titulo">usando HTML & CSS puro</h2>
-           <div class="botoes">
-               <button class="n-overlay">Saiba Mais</button>
-               <button class="overlay">Inscrever</button>
-           </div>
-        </div>
-    </section>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
