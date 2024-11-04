@@ -15,7 +15,7 @@ app.use(cors());
 app.use('/api' , router);
 router.use((request, response, next)=>{
     console.log('middleware');
-    next(); 
+    next(); git commit -m "Mensagem do seu commit"
     
 })
 
