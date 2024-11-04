@@ -2,10 +2,10 @@ var config = require('./dbConfig');
 const sql = require('mssql');
 
 
-async function GetProdutos(params) {
+async function GetProdutos() {
     try{
-let poul = await sql.Connect(config);
-let lojas = await poul.request().query("Select  *  from Produtos");
+let pool = await sql.connect(config);
+let lojas= await pool.request().query("Select  *  from Carros");
 return lojas.recordsets;
 
     }
@@ -14,42 +14,39 @@ return lojas.recordsets;
     }
 }
 
-async function updtproduto(produto) {
-    try {
-        let pool = await sql.connect(config);
-        let loja = await pool.request()
-            .input('Id', sql.Int, produtoId)
-            .input('nome', sql.VarChar, produto.nome)
-            .input('Preco', sql.Decimal, produto.Preco) // Ajuste de tipo conforme necessário
-            .input('descrição', sql.VarChar, produto.descrição)
-            .input('Quantidade', sql.Int, produto.Quantidade)
-            .input('Avaliação', sql.Decimal, produto.Avaliação) // Ajuste de tipo conforme necessário
-            .input('Categoria', sql.VarChar, produto.Categoria)
-            .query(`UPDATE [dbo].[Produto]
-                    SET 
-                        [nome] = @nome,
-                        [Preco] = @Preco,
-                        [descrição] = @descrição,
-                        [Quantidade] = @Quantidade,
-                        [Avaliação] = @Avaliação,
-                        [Categoria] = @Categoria
-                    WHERE ID = @Id`);
 
-       
+async function Updtcarro(carro) {
+    try{
+          let pool = await sql.connect(config);
+          let loja = await pool.request()
+          .input('input_parameter', sql.Int , carro.Id)
+          .query(`UPdate [dbo].[Carros]
+           SET
+            [Nome] = '${carro.Nome}',
+            [Preco] = '${carro.Preco}',
+            [Quantidade] ='${carro.Quantidade}',
+            [Descricao] ='${carro.Descricao}',
+            [Categoria] ='${carro.Categoria}',
+            [Avaliacao] ='${carro.Avaliacao}'
+              WHERE ID = @input_parameter
+               `);
+                return loja.recordsets
 
-      return loja.recordsets
-            }
-     catch(error){
-        console.log("error");
-     }
-     
+
+
     }
-     async function getproduto(produtoId) {
+    catch(error){
+
+        console.log(error);
+    }
+}
+
+     async function getProduto(carroId) {
         try{
-            let poul = await sql.Connect(config);
-            let lojas = await poul.request()
-            .input('@input_Parameter' , sql.int , produtoId)
-            .query("Select  *  from produto  WHERE ID = @input_Parameter ");
+            let pool = await sql.connect(config);
+            let lojas = await pool.request()
+            .input('input_parameter' , sql.Int , carroId)
+            .query("SELECT  *  from Carros  WHERE Id = @input_Parameter ");
             return lojas.recordsets;
             
                 }
@@ -57,59 +54,50 @@ async function updtproduto(produto) {
                  console.log(error);
                 }
             }
-            async function Delproduto(produtoId) {
+            async function delproduto(carroId) {
                 try{
-                    let poul = await sql.Connect(config);
-                    let lojas = await poul.request()
-                    .input('@input_Parameter' , sql.int , produtoId)
-                    .query("DELETE from [dbo].[produtos] WHERE ID = @input_Parameter ");
-                    return lojas.recordsets;
+                    let pool = await sql.connect(config);
+                    let lojas = await pool.request()
+                    .input('input_parameter' , sql.Int , carroId)
+                    .query("DELETE  from [dbo].[Carros] WHERE ID = @input_parameter");
+                     return lojas.recordsets;
                     
                         }
                         catch (error){
                          console.log(error);
                         }
                     }
-                    async function Addproduto(produto) {
+                    async function Addproduto(carro) {
                         try {
                             let pool = await sql.connect(config);
                             let lojas = await pool.request()
-                            .query(`INSERT INTO [dbo].[produtos] 
-                                (
-                                [Id], 
-                                [nome], 
-                                [Preco], 
-                                [descricao], 
-                                [Quantidade], 
-                                [Avaliacao], 
-                                [Categoria]
-                                )
-                                VALUES (
-                                '${produto.Id}', 
-                                '${produto.nome}, 
-                                '${produto.Preco}', 
-                                '${produto.descrição}, 
-                                '${produto.Quantidade},
-                                '${produto.Avaliação}, 
-                                '${produto.Categoria}'
-                             ) `);
-            
-                            
-                            
+                                .input('Preco', sql.Int, carro.Preco)
+                                .input('Quantidade', sql.Int, carro.Quantidade)
+                                .input('Nome', sql.NVarChar, carro.Nome)
+                                .input('Id', sql.Int, carro.Id)
+                                .input('Avaliacao', sql.NVarChar, carro.Avaliacao)  // Corrigido de Avaliação para Avaliacao
+                                .input('Descricao', sql.NVarChar, carro.Descricao)
+                                .input('Categoria', sql.NVarChar, carro.Categoria)
+                                .query(`INSERT INTO [dbo].[Carros] 
+                                    ([Preco], [Quantidade], [Nome], [Id], [Avaliacao], [Descricao], [Categoria]) 
+                                    VALUES (@Preco, @Quantidade, @Nome, @Id, @Avaliacao, @Descricao, @Categoria)`);
+                    
                             return lojas.recordsets;
-                        } catch (error) {
-                            console.log("Erro ao adicionar produto:", error);
-                            throw error;
+                        } 
+                        catch (error) {
+                            console.log(error);
+                        }
+                    }
                     
 
-                        }}
+                        
 
 
    module.exports = {
       GetProdutos : GetProdutos,
-      updtproduto : updtproduto,
-      getproduto : getproduto,
-      Delproduto : Delproduto,
+      Updtcarro : Updtcarro,
+      getProduto : getProduto,
+      delproduto : delproduto,
       Addproduto : Addproduto
     }
 
